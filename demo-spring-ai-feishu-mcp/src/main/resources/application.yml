@@ -1,0 +1,24 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: demo-spring-ai-feishu-mcp
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY:}
+    mcp:
+      client:
+        enabled: true
+        streamable-http:
+          connections:
+            feishu:
+              url: ${FEISHU_MCP_BASE_URL:https://mcp.feishu.cn}
+              endpoint: ${FEISHU_MCP_ENDPOINT:/mcp}
+
+# Feishu remote MCP headers (see Feishu Open Platform MCP docs)
+feishu:
+  mcp:
+    token: ${FEISHU_MCP_TOKEN:}
+    token-header: ${FEISHU_MCP_TOKEN_HEADER:X-Lark-MCP-TAT}
+    allowed-tools: ${FEISHU_MCP_ALLOWED_TOOLS:fetch-doc,search-doc}
