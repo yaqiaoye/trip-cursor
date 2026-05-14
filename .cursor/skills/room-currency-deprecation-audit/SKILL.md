@@ -28,29 +28,7 @@ The goal is to produce an evidence-based audit first, then make the smallest saf
 - Avoid changing hot-path loops, cache construction, and batch converters beyond the specific `currency` handling being removed.
 - Use structured or compiler-aware tools when present; otherwise use `rg` plus focused code reading.
 
-## Fast audit command
-
-From the target service repository, copy or reference this skill's helper script and run:
-
-```bash
-python .cursor/skills/room-currency-deprecation-audit/scripts/audit_room_currency.py . --output room-currency-audit.md
-```
-
-If the skill is installed outside the target repository, run the script by absolute path:
-
-```bash
-python /path/to/room-currency-deprecation-audit/scripts/audit_room_currency.py /path/to/service --output room-currency-audit.md
-```
-
-The script is read-only and dependency-free. It gives a first-pass report for:
-
-- room/basic-room related files that define `currency`
-- usage and pass-through evidence such as `getCurrency`, `setCurrency`, direct field access, JSON/schema keys, and variables
-- methods containing `currency` logic and heuristic direct call-site counts
-
-Use the report as a starting point, then manually inspect important files before editing.
-
-## Manual analysis workflow
+## Analysis workflow
 
 ### 1. Find room-related `currency` definitions
 
